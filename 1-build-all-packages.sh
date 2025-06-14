@@ -30,6 +30,21 @@ echo "################################################################"
 tput sgr0
 echo
 
+# Define array of package names
+packages=("rofi-lbonn-wayland" "flameshot-git")
+
+# File to remove
+file=".previous-version"
+
+# Loop through all packages
+for pkg in "${packages[@]}"; do
+  if [[ -f "$pkg/$file" ]]; then
+    rm "$pkg/$file"
+    echo "Removed $file for package: $pkg"
+  fi
+done
+
+
 count=0
 total_repos=$(find . -maxdepth 1 -type d -name '*' ! -name '.' | wc -l)
 

@@ -72,6 +72,7 @@ createcurrentversion(){
 }
 
 checkversion(){
+
   #check version
   pkgver=$(grep -m1 "pkgver" PKGBUILD | cut -d= -f2)
   pkgrel=$(grep -m1 "pkgrel" PKGBUILD | cut -d= -f2)
@@ -111,6 +112,7 @@ checkversion(){
 }
 
 createcurrentversion
+
 checkversion
 
 if [ $buildneeded == "false" ]; then
@@ -140,7 +142,7 @@ if [ $buildneeded = "true" ]; then
     tput sgr0
 
     CHROOT=$HOME/Documents/chroot-archlinux
-    arch-nspawn $CHROOT/root pacman -Syu
+    arch-nspawn $CHROOT/root pacman -Syu --noconfirm
     makechrootpkg -c -r $CHROOT
     if [ $? -eq 0 ]; then
       success="true"
